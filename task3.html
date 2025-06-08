@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+
+  <style>
+    * {
+      font-size: 18px;
+    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      margin: 100px auto 0;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgb(156, 205, 205);
+    }
+    .label {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Counter() {
+        const [num1, setNum1] = React.useState(0);
+        const [num2, setNum2] = React.useState(0);
+        const [random, setRandom] = React.useState(0);
+
+        const getNum1 = e => {
+          setNum1(Number(e.target.value));
+        };
+        const getNum2 = e => {
+          setNum2(Number(e.target.value));
+        };
+
+        function getRandomInt(min, max) {
+          setRandom(Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+
+        return (
+          <div className="container">
+            <h1> Enter numbers to get random number between them</h1>
+            <label className="label">
+              enter first number:
+              <input type="number" onChange={getNum1} />
+            </label>
+            <label className="label">
+              enter second number
+              <input type="number" onChange={getNum2} />
+            </label>
+            <button onClick={() => getRandomInt(num1, num2)}>find</button>
+            <h2>
+              Random number between {num1} and {num2} is: {random}
+            </h2>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Counter />);
+    </script>
+  </body>
+</html>

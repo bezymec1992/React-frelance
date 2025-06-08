@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+
+  <style>
+    * {
+      font-size: 18px;
+    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      margin: 100px auto 0;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgb(156, 205, 205);
+    }
+    .label {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .green {
+      color: green;
+    }
+    .red {
+      color: red;
+    }
+
+    .season {
+      width: 150px;
+      height: 150px;
+
+      object-fit: cover;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Counter() {
+        // const [num1, setNum1] = React.useState('');
+        const [seasonName, setSeasonName] = React.useState('');
+        const [seasonImg, setSeasonImg] = React.useState(
+          'https://blog.learnamp.com/hubfs/question.jpg'
+        );
+
+        const getNum1 = e => {
+          const value = parseInt(e.target.value);
+          if (!isNaN(value)) {
+            // setNum1(value);
+            findSeason(value);
+          } else {
+            setSeasonName('');
+          }
+        };
+
+        const winterUrl =
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRSZTc5-7iWgVrXG5T7KMLmXrpK1m_uisLGdShssIN-pLPsZyN-fekzWlPKuFapftEqzA&usqp=CAU';
+        const springUrl = 'https://cdn.mos.cms.futurecdn.net/tXr5UjKDsDBrYBQM9znb2c-1200-80.jpg';
+        const summerUrl =
+          'https://www.factsmostly.com/wp-content/uploads/2024/09/Summer-Season.webp';
+        const autumnUrl =
+          'https://compuweather.com/wp-content/uploads/2021/10/iStock-1278765757-scaled.jpg';
+        const defaultUrl = 'https://blog.learnamp.com/hubfs/question.jpg';
+
+        function findSeason(num) {
+          switch (true) {
+            case num >= 1 && num <= 3:
+              setSeasonName('winter');
+              setSeasonImg(winterUrl);
+              break;
+
+            case num >= 4 && num <= 6:
+              setSeasonName('spring');
+              setSeasonImg(springUrl);
+              break;
+
+            case num >= 7 && num <= 9:
+              setSeasonName('summer');
+              setSeasonImg(summerUrl);
+              break;
+
+            case num >= 10 && num <= 12:
+              setSeasonName('autumn');
+              setSeasonImg(autumnUrl);
+              break;
+
+            default:
+              setSeasonName('Invalid month');
+              setSeasonImg(defaultUrl);
+          }
+        }
+
+        return (
+          <div className="container">
+            <label className="label">
+              enter first number:
+              <input type="number" onChange={getNum1} />
+            </label>
+            <p>{seasonName}</p>
+            <img className="season" src={seasonImg} alt="season"></img>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Counter />);
+    </script>
+  </body>
+</html>

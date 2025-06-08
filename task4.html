@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+
+  <style>
+    * {
+      font-size: 18px;
+    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      margin: 100px auto 0;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgb(156, 205, 205);
+    }
+    .label {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .green {
+      color: green;
+    }
+    .red {
+      color: red;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Counter() {
+        const [balance, setBalance] = React.useState(0);
+        const [input1, setInput1] = React.useState('');
+        const [input2, setInput2] = React.useState('');
+        const [fee, setFee] = React.useState(0);
+        const [btnClicked, setBtnClicked] = React.useState(false);
+
+        const getNum1 = e => {
+          setInput1(e.target.value);
+        };
+
+        function getNum2(e) {
+          setInput2(Number(e.target.value));
+        }
+
+        function addMoney() {
+          const value = Number(input1);
+          if (value > 0) {
+            setBalance(prevCount => prevCount + (value - value * 0.03));
+            setInput1('');
+            setFee(value * 0.03);
+            setBtnClicked(false);
+          } else {
+            alert('Please enter a positive number');
+          }
+        }
+
+        function removeMoney() {
+          const value = Number(input2);
+          if (balance < value || value <= 0) {
+            alert('Insufficient balance or invalid amount');
+            return;
+          }
+          setBalance(prevCount => prevCount - (value - value * 0.03));
+          setInput2('');
+          setFee(value * 0.03);
+          setBtnClicked(true);
+        }
+
+        return (
+          <div className="container">
+            <h1 className={btnClicked ? 'red' : balance >= 100 ? 'green' : 'red'}>
+              Account balance {balance.toFixed(2)}₴ <br />
+            </h1>
+            <label className="label">
+              enter first number:
+              <input type="number" value={input1} onChange={getNum1} />
+              <button onClick={addMoney}>Add</button>
+            </label>
+            <label className="label">
+              enter second number
+              <input type="number" value={input2} onChange={getNum2} />
+              <button onClick={removeMoney}>Withdraw</button>
+            </label>
+            <p>Service fees (3%): {fee.toFixed(2)} ₴</p> <br />
+            <p>Acount balance in US dollars: ${(balance / 42).toFixed(2)}</p>
+            <p>Acount balance in euros: €{(balance / 45).toFixed(2)}</p>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Counter />);
+    </script>
+  </body>
+</html>

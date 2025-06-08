@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+
+  <style>
+    * {
+      font-size: 18px;
+    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      margin: 100px auto 0;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 25px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgb(156, 205, 205);
+    }
+    .label {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .green {
+      color: green;
+    }
+    .red {
+      color: red;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Counter() {
+        const [login, setLogin] = React.useState('');
+        const [password, setPassword] = React.useState('');
+
+        const getLogin = e => {
+          const value = e.target.value;
+          setLogin(value);
+        };
+
+        const getPassword = e => {
+          const value = e.target.value;
+          setPassword(value);
+        };
+
+        function go() {
+          if (login === 'admin' && password === '12345') {
+            alert('Welcome!');
+          } else {
+            alert('Wrong login or password');
+          }
+        }
+
+        return (
+          <div className="container">
+            <label className="label">
+              enter login:
+              <input value={login} onChange={getLogin} />
+            </label>
+
+            <label className="label">
+              enter password:
+              <input value={password} onChange={getPassword} />
+            </label>
+            <button onClick={go}>Go</button>
+            <p>admin</p>
+            <p>12345</p>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<Counter />);
+    </script>
+  </body>
+</html>
