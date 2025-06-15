@@ -1,0 +1,33 @@
+.menu {
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 20px;
+  color: black;
+}
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.wrapper input {
+  border-radius: 8px;
+}
+
+.btn {
+  height: fit-content;
+}
+.navs {
+  display: flex;
+}
+
+.navs ul {
+  width: 33%;
+}
