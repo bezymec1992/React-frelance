@@ -10,12 +10,12 @@ function App() {
     <div>
       <h1>Home task 2</h1>
       <div className="app">
-        <MenuGo />
         <LoginCheck />
         <TicketCheck />
         <WordCheck />
         <ListShow />
         <ListData />
+        <MenuGo />
       </div>
     </div>
   );
