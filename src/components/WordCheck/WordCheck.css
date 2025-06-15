@@ -1,0 +1,35 @@
+.cat {
+  width: 300px;
+  height: 300px;
+}
+
+.img__wrapper {
+  width: 150px;
+  height: 150px;
+  background: url(../../assets/cat.webp) no-repeat center center;
+  background-size: cover;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.correct-active {
+  border: 2px solid rgb(116, 245, 116);
+}
+
+.correct-red {
+  border: 2px solid rgb(249, 102, 68);
+}
+
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}

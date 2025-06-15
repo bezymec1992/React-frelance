@@ -1,0 +1,57 @@
+.success {
+  background-color: green;
+}
+
+.error {
+  background-color: red;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: rgb(171, 218, 233);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  width: auto;
+}
+label {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.error input {
+  border-color: red;
+}
+
+.smile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+  display: none;
+}
+
+.success label {
+  color: green;
+}
+
+.success input {
+  border-color: green;
+}
+
+.success img {
+  display: block;
+}
+
+span {
+  text-align: left;
+}
